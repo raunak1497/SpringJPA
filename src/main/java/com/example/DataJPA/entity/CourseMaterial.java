@@ -1,9 +1,6 @@
 package com.example.DataJPA.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -12,6 +9,9 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@ToString(
+        exclude = "course"
+)
 public class CourseMaterial {
 
     @Id
@@ -27,8 +27,12 @@ public class CourseMaterial {
     private Long courseMaterialId;
     private String url;
 
-    @OneToOne
-    @JoinColumn(
+    @OneToOne (
+            cascade = CascadeType.ALL, //this is used when we add course material and have not added course so it'll cascade it
+            fetch = FetchType.LAZY //For lazy when we only want course material when we fetch it
+//            fetch = FetchType.EAGER //For Eager it'll also give course when course material is fetched
+    ) //Making the mapping
+    @JoinColumn(  //setting up the foreign key
             name = "courseId",
             referencedColumnName = "courseId"
     )
