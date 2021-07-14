@@ -2,9 +2,11 @@ package com.example.DataJPA.repository;
 
 import com.example.DataJPA.entity.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -44,4 +46,13 @@ public interface StudentRepository extends JpaRepository<Student,Long> {
     Student getStudentByEmailNativeNamedParam(
             @Param("emailId") String emailId
     );
+
+    //Update query
+    @Modifying //Used when using modifying queries
+    @Transactional //used when trying to declare a transaction
+    @Query(
+            value = "update tbl_student set first_name = ?1 where email_address = ?2 ",
+            nativeQuery = true
+    )
+    int updateStudentNameByEmail(String firstName,String emailid);
 }
