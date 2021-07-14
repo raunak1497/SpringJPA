@@ -31,4 +31,7 @@ public class Course {
             mappedBy = "course"
     )
     private  CourseMaterial courseMaterial;
+
+
+//    private
 }
