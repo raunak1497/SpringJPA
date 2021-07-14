@@ -29,7 +29,8 @@ public class CourseMaterial {
 
     @OneToOne (
             cascade = CascadeType.ALL, //this is used when we add course material and have not added course so it'll cascade it
-            fetch = FetchType.LAZY //For lazy when we only want course material when we fetch it
+            fetch = FetchType.LAZY, //For lazy when we only want course material when we fetch it
+            optional = false //This includes optionality feature
 //            fetch = FetchType.EAGER //For Eager it'll also give course when course material is fetched
     ) //Making the mapping
     @JoinColumn(  //setting up the foreign key

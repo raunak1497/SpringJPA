@@ -17,14 +17,14 @@ class CourseMaterialRepositoryTest {
     private  CourseMaterialRepository repository;
 
         Course course = Course.builder()
-                .courseTitle("DSA")
+                .courseTitle(".net")
                 .courseCredit(4)
                 .build();
 
         @Test
     public  void SaveCourseMaterial(){
         CourseMaterial courseMaterial = CourseMaterial.builder()
-                .url("www.google.com")
+                .url("www.raunak.com")
                 .course(course)
                 .build();
 
